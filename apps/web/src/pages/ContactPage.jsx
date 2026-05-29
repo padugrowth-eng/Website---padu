@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
-import { Mail, Globe, MapPin, Phone } from 'lucide-react';
+import { Mail, Globe, MapPin, Phone, MessageCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
 import Header from '@/components/Header.jsx';
@@ -240,6 +240,22 @@ const ContactPage = () => {
                           www.padu.id
                         </a>
                       </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <MessageCircle className="text-primary" size={20} />
+                    </div>
+                    <div>
+                      <p className="font-medium mb-1">WhatsApp</p>
+                      <a
+                        href="https://wa.me/6281210159530?text=Halo%20PADU%20Growth,%20saya%20ingin%20berdiskusi%20mengenai%20investasi%20dan%20kemitraan."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                       >
+                        +62 812-1015-9530
+                      </a>
+                    </div>
                     </div>
 
                     <div className="flex items-start gap-4">
