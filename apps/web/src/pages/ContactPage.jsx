@@ -50,45 +50,49 @@ const ContactPage = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-try {
+  try {
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbyxqdPAKi-1ghs_VSgCKTA2B2yX8p9Pcc_EturDnUUdr2vRJBUgIj7vUoitEbvYWPcF/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
-  await fetch(
-    "https://script.google.com/macros/s/AKfycbyxqdPAKi-1ghs_VSgCKTA2B2yX8p9Pcc_EturDnUUdr2vRJBUgIj7vUoitEbvYWPcF/exec",
-    {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain",
-      },
-      body: JSON.stringify(formData),
-    }
-  );
+    toast.success(t('contact.form.success'), {
+      description: "Pesan berhasil dikirim.",
+    });
 
-  toast.success(t('contact.form.success'), {
-    description: "Pesan berhasil dikirim.",
-  });
+    setFormData({
+      name: '',
+      company: '',
+      email: '',
+      phone: '',
+      message: '',
+    });
 
-  setFormData({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
+  } catch (error) {
 
-} catch (error) {
+    console.error(error);
 
-  console.error(error);
+    toast.error(t('contact.form.error'), {
+      description: error?.message || "Terjadi kesalahan.",
+    });
 
-  toast.error(t('contact.form.error'), {
-    description: error.message,
-  });
+  } finally {
 
-}
+    setIsSubmitting(false);
+
+  }
+};
 
   return (
     <>
