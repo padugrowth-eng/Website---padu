@@ -56,23 +56,20 @@ const ContactPage = () => {
 
 try {
 
-  const response = await fetch(
+  await fetch(
     "https://script.google.com/macros/s/AKfycbyxqdPAKi-1ghs_VSgCKTA2B2yX8p9Pcc_EturDnUUdr2vRJBUgIj7vUoitEbvYWPcF/exec",
     {
       method: "POST",
+      mode: "no-cors",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "text/plain",
       },
       body: JSON.stringify(formData),
     }
   );
 
-  if (!response.ok) {
-    throw new Error("Gagal mengirim data");
-  }
-
   toast.success(t('contact.form.success'), {
-    description: t('contact.form.successDesc'),
+    description: "Pesan berhasil dikirim.",
   });
 
   setFormData({
@@ -82,15 +79,16 @@ try {
     phone: '',
     message: '',
   });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast.error(t('contact.form.error'), {
-        description: error?.message || 'Something went wrong. Please try again later.',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+
+} catch (error) {
+
+  console.error(error);
+
+  toast.error(t('contact.form.error'), {
+    description: error.message,
+  });
+
+}
 
   return (
     <>
