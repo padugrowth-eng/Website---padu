@@ -264,12 +264,12 @@ await fetch(
                     <div>
                       <p className="font-medium mb-1">WhatsApp</p>
                       <a
-                        href="https://wa.me/6281210159530?text=Halo%20PADU%20Growth,%20saya%20ingin%20berdiskusi%20mengenai%20investasi%20dan%20kemitraan."
+                        href="https://wa.me/6282121088814?text=Halo%20PADU%20Growth,%20saya%20ingin%20berdiskusi%20mengenai%20investasi%20dan%20kemitraan."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-primary transition-colors duration-200"
                        >
-                        +62 812-1015-9530
+                        halo PADUKA
                       </a>
                     </div>
                     </div>
