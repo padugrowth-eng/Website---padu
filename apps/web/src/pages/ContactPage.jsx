@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import pb from '@/lib/pocketbaseClient.js';
+
 
 const ContactPage = () => {
   const location = useLocation();
