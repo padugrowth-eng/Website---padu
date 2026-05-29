@@ -54,20 +54,34 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      await pb.collection('contact_submissions').create(formData, { $autoCancel: false });
+try {
 
-      toast.success(t('contact.form.success'), {
-        description: t('contact.form.successDesc'),
-      });
+  const response = await fetch(
+    "https://script.google.com/macros/s/AKfycbyxqdPAKi-1ghs_VSgCKTA2B2yX8p9Pcc_EturDnUUdr2vRJBUgIj7vUoitEbvYWPcF/exec",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    }
+  );
 
-      setFormData({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        message: '',
-      });
+  if (!response.ok) {
+    throw new Error("Gagal mengirim data");
+  }
+
+  toast.success(t('contact.form.success'), {
+    description: t('contact.form.successDesc'),
+  });
+
+  setFormData({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error(t('contact.form.error'), {
