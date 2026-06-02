@@ -126,21 +126,12 @@ return (
 
       </div>
 
-      <div className="prose prose-invert max-w-none text-lg leading-8">
-
-        {content &&
-          content
-            .split("\n")
-            .map((paragraph, index) =>
-              paragraph.trim() ? (
-                <p
-                  key={index}
-                  className="mb-6"
-                >
-                  {paragraph}
-                </p>
-              ) : null
-            )}
+     <div
+  className="prose prose-invert max-w-none text-lg leading-8"
+  dangerouslySetInnerHTML={{
+    __html: content
+  }}
+/>
 
       </div>
 
