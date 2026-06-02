@@ -106,7 +106,6 @@ return (
       </h1>
 
       <div className="text-muted-foreground mb-10">
-
         <div>
           {article.date
             ? new Date(article.date).toLocaleDateString(
@@ -123,17 +122,14 @@ return (
         <div className="mt-2">
           By {article.author}
         </div>
-
       </div>
 
-     <div
-  className="prose prose-invert max-w-none text-lg leading-8"
-  dangerouslySetInnerHTML={{
-    __html: content
-  }}
-/>
-
-      </div>
+      <div
+        className="prose prose-invert max-w-none text-lg leading-8"
+        dangerouslySetInnerHTML={{
+          __html: content
+        }}
+      />
 
     </div>
   </main>
