@@ -150,77 +150,69 @@ return (
 />
 
     </div>
-     ```jsx
-{relatedArticles.length > 0 && (
+     {relatedArticles.length > 0 && (
 
-  <section className="mt-20 pt-12 border-t border-border">
+        <section className="mt-20 pt-12 border-t border-border">
 
-    <h2 className="text-2xl md:text-3xl font-bold mb-8">
-      {language === "en"
-        ? "Related Articles"
-        : "Artikel Terkait"}
-    </h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">
+            {language === "en"
+              ? "Related Articles"
+              : "Artikel Terkait"}
+          </h2>
 
-    <div className="space-y-4">
+          <div className="space-y-5">
 
-      {relatedArticles.map((item) => (
+            {relatedArticles.map((item) => (
 
-        <Link
-          key={item.slug}
-          to={`/insights/${item.slug}`}
-          className="flex flex-col md:flex-row gap-4 bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-300"
-        >
+              <Link
+                key={item.slug}
+                to={`/insights/${item.slug}`}
+                className="flex flex-col md:flex-row bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-300"
+              >
 
-          {item.image && (
-            <img
-              src={item.image}
-              alt={
-                language === "en"
-                  ? item.title_en
-                  : item.title_id
-              }
-              className="w-full md:w-56 h-40 object-cover"
-            />
-          )}
+                {item.image && (
+                  <img
+                    src={item.image}
+                    alt={
+                      language === "en"
+                        ? item.title_en
+                        : item.title_id
+                    }
+                    className="w-full md:w-64 h-44 object-cover"
+                  />
+                )}
 
-          <div className="p-5 flex flex-col justify-center">
+                <div className="p-6 flex flex-col justify-center">
 
-            <div className="text-primary text-xs uppercase mb-2">
-              {language === "en"
-                ? item.category_en
-                : item.category_id}
-            </div>
+                  <div className="text-primary text-xs uppercase tracking-wider mb-2">
+                    {language === "en"
+                      ? item.category_en
+                      : item.category_id}
+                  </div>
 
-            <h3 className="text-xl font-bold leading-snug mb-2 group-hover:text-primary">
-              {language === "en"
-                ? item.title_en
-                : item.title_id}
-            </h3>
+                  <h3 className="text-xl font-bold mb-3 leading-snug hover:text-primary transition-colors">
+                    {language === "en"
+                      ? item.title_en
+                      : item.title_id}
+                  </h3>
 
-            <p className="text-sm text-muted-foreground">
-              {language === "en"
-                ? item.excerpt_en
-                : item.excerpt_id}
-            </p>
+                  <p className="text-muted-foreground text-sm line-clamp-2">
+                    {language === "en"
+                      ? item.excerpt_en
+                      : item.excerpt_id}
+                  </p>
+
+                </div>
+
+              </Link>
+
+            ))}
 
           </div>
 
-        </Link>
+        </section>
 
-      ))}
-
-    </div>
-
-  </section>
-
-)}
-
-
-    </div>
-
-  </section>
-
-)}
+      )}
   </main>
 
   <Footer />
