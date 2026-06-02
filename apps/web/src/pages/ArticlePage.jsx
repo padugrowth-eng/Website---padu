@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "@/components/Header.jsx";
 import Footer from "@/components/Footer.jsx";
+import { useLanguage } from "@/contexts/LanguageContext.jsx";
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbz7VNkFv8jp2szJ1-fYfrzJm-BayuPhPh2XAE0VOd0dldSbddLG96p6_lH4YzvSK-ui/exec";
 
 function ArticlePage() {
 const { slug } = useParams();
+const { language } = useLanguage();
 
 const [article, setArticle] = useState(null);
 const [loading, setLoading] = useState(true);
@@ -16,14 +18,20 @@ useEffect(() => {
 fetch(API_URL)
 .then((res) => res.json())
 .then((data) => {
-const found = data.find((item) => item.slug === slug);
-setArticle(found || null);
-setLoading(false);
-})
-.catch((err) => {
-console.error(err);
-setLoading(false);
-});
+const found = data.find(
+(item) => item.slug === slug
+);
+
+
+    setArticle(found || null);
+    setLoading(false);
+  })
+  .catch((err) => {
+    console.error(err);
+    setLoading(false);
+  });
+
+
 }, [slug]);
 
 if (loading) {
@@ -42,36 +50,74 @@ Article Not Found </div> <Footer />
 );
 }
 
+const title =
+language === "en"
+? article.title_en
+: article.title_id;
+
+const category =
+language === "en"
+? article.category_en
+: article.category_id;
+
+const content =
+language === "en"
+? article.content_en
+: article.content_id;
+
 return (
 <> <Header />
 
+
   <main className="pt-32 pb-24">
     <div className="max-w-4xl mx-auto px-6">
-      <div className="mb-4 text-primary">
-        {article.category}
+
+      <div className="mb-4 text-primary font-medium">
+        {category}
       </div>
 
-      <h1 className="text-5xl font-bold mb-8">
-        {article.title}
+      <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+        {title}
       </h1>
 
-      <div className="text-muted-foreground mb-8">
-        {article.date}
+      <div className="text-muted-foreground mb-10">
+        {article.date
+          ? new Date(article.date).toLocaleDateString(
+              language === "en" ? "en-US" : "id-ID",
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              }
+            )
+          : "-"}
       </div>
 
-      <div className="prose prose-invert max-w-none">
-        {article.content &&
-          article.content.split("\n").map((paragraph, index) =>
-            paragraph.trim() ? (
-              <p key={index}>{paragraph}</p>
-            ) : null
-          )}
+      <div className="prose prose-invert max-w-none text-lg leading-8">
+
+        {content &&
+          content
+            .split("\n")
+            .map((paragraph, index) =>
+              paragraph.trim() ? (
+                <p
+                  key={index}
+                  className="mb-6"
+                >
+                  {paragraph}
+                </p>
+              ) : null
+            )}
+
       </div>
+
     </div>
   </main>
 
   <Footer />
 </>
+
+
 );
 }
 
