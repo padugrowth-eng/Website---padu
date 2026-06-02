@@ -97,22 +97,34 @@ const InsightsPage = () => {
 
                       <div className="flex flex-col h-full">
 
-                        <div className="flex items-center gap-3 mb-4">
+                       <div className="mb-4">
 
-                          <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
-                            <Icon
-                              className="text-primary"
-                              size={24}
-                            />
-                          </div>
+  {article.image ? (
+    <img
+      src={article.image}
+      alt={
+        language === "en"
+          ? article.title_en
+          : article.title_id
+      }
+      className="w-full h-56 object-cover rounded-xl"
+    />
+  ) : (
+    <div className="w-full h-56 rounded-xl bg-primary/10 flex items-center justify-center">
+      <Icon
+        className="text-primary"
+        size={48}
+      />
+    </div>
+  )}
 
-                          <span className="text-sm font-medium text-primary uppercase">
-                            {language === 'en'
-                              ? article.category_en
-                              : article.category_id}
-                          </span>
+</div>
 
-                        </div>
+<span className="text-sm font-medium text-primary uppercase">
+  {language === "en"
+    ? article.category_en
+    : article.category_id}
+</span>
 
                         <h2 className="text-2xl font-bold mb-3">
                           {language === 'en'
