@@ -33,13 +33,13 @@ const ArticlePage = () => {
       <Header />
 
       <main className="pt-32 pb-24">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-8">
 
           <div className="mb-4 text-primary">
             {article.category}
           </div>
 
-          <h1 className="text-5xl font-bold mb-6">
+          <h1 className="text-6xl font-bold leading-tight mb-8">
             {article.title}
           </h1>
 
