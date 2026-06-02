@@ -150,24 +150,25 @@ return (
 />
 
     </div>
-      {relatedArticles.length > 0 && (
+     ```jsx
+{relatedArticles.length > 0 && (
 
-  <section className="mt-24 border-t border-border pt-16">
+  <section className="mt-20 pt-12 border-t border-border">
 
-    <h2 className="text-3xl font-bold mb-10">
+    <h2 className="text-2xl md:text-3xl font-bold mb-8">
       {language === "en"
         ? "Related Articles"
         : "Artikel Terkait"}
     </h2>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="space-y-4">
 
       {relatedArticles.map((item) => (
 
         <Link
           key={item.slug}
           to={`/insights/${item.slug}`}
-          className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-300"
+          className="flex flex-col md:flex-row gap-4 bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-300"
         >
 
           {item.image && (
@@ -178,11 +179,11 @@ return (
                   ? item.title_en
                   : item.title_id
               }
-              className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full md:w-56 h-40 object-cover"
             />
           )}
 
-          <div className="p-5">
+          <div className="p-5 flex flex-col justify-center">
 
             <div className="text-primary text-xs uppercase mb-2">
               {language === "en"
@@ -190,17 +191,30 @@ return (
                 : item.category_id}
             </div>
 
-            <h3 className="font-bold text-lg leading-snug group-hover:text-primary transition-colors">
+            <h3 className="text-xl font-bold leading-snug mb-2 group-hover:text-primary">
               {language === "en"
                 ? item.title_en
                 : item.title_id}
             </h3>
+
+            <p className="text-sm text-muted-foreground">
+              {language === "en"
+                ? item.excerpt_en
+                : item.excerpt_id}
+            </p>
 
           </div>
 
         </Link>
 
       ))}
+
+    </div>
+
+  </section>
+
+)}
+
 
     </div>
 
