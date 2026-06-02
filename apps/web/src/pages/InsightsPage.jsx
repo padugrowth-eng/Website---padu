@@ -1,4 +1,4 @@
-
+  
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
@@ -68,9 +68,16 @@ const InsightsPage = () => {
                             day: 'numeric',
                           })}
                         </span>
-                        <button className="text-sm font-medium text-primary hover:underline transition-all duration-200">
+                        <a
+                         href={`/insights/${article.title
+                             .toLowerCase()
+                             .replaceAll(' ', '-')
+                             .replaceAll('?', '')
+                             .replaceAll(',', '')}`}
+                         className="text-sm font-medium text-primary hover:underline transition-all duration-200"
+                        >
                           {t('insights.readMore')}
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </AnimatedCard>
