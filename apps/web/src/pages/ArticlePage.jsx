@@ -4,7 +4,7 @@ import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 
 const API_URL =
-"https://script.google.com/macros/s/AKfycbz7VNkFv8jp2szJ1-fYfrzJm-BayuPhPh2XAE0VOd0dldSbddLG96p6_lH4YzvSK-ui/exec";
+'https://script.google.com/macros/s/AKfycbz7VNkFv8jp2szJ1-fYfrzJm-BayuPhPh2XAE0VOd0dldSbddLG96p6_lH4YzvSK-ui/exec';
 
 const ArticlePage = () => {
 const { slug } = useParams();
@@ -16,16 +16,16 @@ useEffect(() => {
 fetch(API_URL)
 .then((res) => res.json())
 .then((data) => {
-const found = data.find(
+const foundArticle = data.find(
 (item) => item.slug === slug
 );
 
 ```
-    setArticle(found || null);
+    setArticle(foundArticle || null);
     setLoading(false);
   })
-  .catch((err) => {
-    console.error(err);
+  .catch((error) => {
+    console.error(error);
     setLoading(false);
   });
 ```
@@ -34,8 +34,7 @@ const found = data.find(
 
 if (loading) {
 return (
-<> <Header /> <div className="min-h-screen flex items-center justify-center">
-Loading... </div> <Footer />
+<> <Header /> <div className="min-h-screen flex items-center justify-center"> <h1>Loading...</h1> </div> <Footer />
 </>
 );
 }
@@ -52,38 +51,33 @@ return (
 
 ```
   <main className="pt-32 pb-24">
-    <div className="max-w-4xl mx-auto px-6">
+    <div className="max-w-5xl mx-auto px-8">
 
-      <div className="text-primary mb-4 font-medium">
+      <div className="mb-4 text-primary">
         {article.category}
       </div>
 
-      <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-8">
+      <h1 className="text-6xl font-bold leading-tight mb-8">
         {article.title}
       </h1>
 
-      <div className="text-muted-foreground mb-12">
+      <div className="text-muted-foreground mb-10">
         {article.date
-          ? new Date(article.date).toLocaleDateString('id-ID', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })
+          ? new Date(article.date).toLocaleDateString('id-ID')
           : '-'}
       </div>
 
       <div className="prose prose-invert max-w-none text-lg leading-8">
-
-        {article.content
-          ?.split('\n')
-          .map((paragraph, index) =>
-            paragraph.trim() ? (
-              <p key={index} className="mb-6">
-                {paragraph}
-              </p>
-            ) : null
-          )}
-
+        {article.content &&
+          article.content
+            .split('\n')
+            .map((paragraph, index) =>
+              paragraph.trim() ? (
+                <p key={index} className="mb-6">
+                  {paragraph}
+                </p>
+              ) : null
+            )}
       </div>
 
     </div>
