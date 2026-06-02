@@ -1,68 +1,99 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 
+const API_URL =
+"https://script.google.com/macros/s/AKfycbz7VNkFv8jp2szJ1-fYfrzJm-BayuPhPh2XAE0VOd0dldSbddLG96p6_lH4YzvSK-ui/exec";
 
 const ArticlePage = () => {
-  const { slug } = useParams();
+const { slug } = useParams();
 
-  const article = articles.find(
-    (item) =>
-      item.title
-        .toLowerCase()
-        .replaceAll(' ', '-')
-        .replaceAll('?', '')
-        .replaceAll(',', '') === slug
-  );
+const [article, setArticle] = useState(null);
+const [loading, setLoading] = useState(true);
 
-  if (!article) {
-    return (
-      <>
-        <Header />
-        <div className="min-h-screen flex items-center justify-center">
-          <h1>Article Not Found</h1>
-        </div>
-        <Footer />
-      </>
-    );
-  }
+useEffect(() => {
+fetch(API_URL)
+.then((res) => res.json())
+.then((data) => {
+const found = data.find(
+(item) => item.slug === slug
+);
 
-  return (
-    <>
-      <Header />
+```
+    setArticle(found || null);
+    setLoading(false);
+  })
+  .catch((err) => {
+    console.error(err);
+    setLoading(false);
+  });
+```
 
-      <main className="pt-32 pb-24">
-        <div className="max-w-5xl mx-auto px-8">
+}, [slug]);
 
-          <div className="mb-4 text-primary">
-            {article.category}
-          </div>
+if (loading) {
+return (
+<> <Header /> <div className="min-h-screen flex items-center justify-center">
+Loading... </div> <Footer />
+</>
+);
+}
 
-          <h1 className="text-6xl font-bold leading-tight mb-8">
-            {article.title}
-          </h1>
+if (!article) {
+return (
+<> <Header /> <div className="min-h-screen flex items-center justify-center"> <h1>Article Not Found</h1> </div> <Footer />
+</>
+);
+}
 
-          <div className="text-muted-foreground mb-10">
-            {article.date}
-          </div>
+return (
+<> <Header />
 
-          <div className="prose prose-invert max-w-none text-lg leading-8">
-            {article.content.split('\n').map((paragraph, index) => (
-              paragraph.trim() ? (
-                <p key={index} className="mb-6">
-                  {paragraph}
-                </p>
+```
+  <main className="pt-32 pb-24">
+    <div className="max-w-4xl mx-auto px-6">
+
+      <div className="text-primary mb-4 font-medium">
+        {article.category}
+      </div>
+
+      <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-8">
+        {article.title}
+      </h1>
+
+      <div className="text-muted-foreground mb-12">
+        {article.date
+          ? new Date(article.date).toLocaleDateString('id-ID', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })
+          : '-'}
+      </div>
+
+      <div className="prose prose-invert max-w-none text-lg leading-8">
+
+        {article.content
+          ?.split('\n')
+          .map((paragraph, index) =>
+            paragraph.trim() ? (
+              <p key={index} className="mb-6">
+                {paragraph}
+              </p>
             ) : null
-            ))}
-          </div>
+          )}
 
-        </div>
-      </main>
+      </div>
 
-      <Footer />
-    </>
-  );
+    </div>
+  </main>
+
+  <Footer />
+</>
+```
+
+);
 };
 
 export default ArticlePage;
