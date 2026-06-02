@@ -45,7 +45,6 @@ Article Not Found </div> <Footer />
 return (
 <> <Header />
 
-```
   <main className="pt-32 pb-24">
     <div className="max-w-4xl mx-auto px-6">
       <div className="mb-4 text-primary">
