@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import Header from "@/components/Header.jsx";
@@ -15,19 +15,37 @@ const { language } = useLanguage();
 
 const [article, setArticle] = useState(null);
 const [loading, setLoading] = useState(true);
+const [relatedArticles, setRelatedArticles] = useState([]);
 
 useEffect(() => {
 fetch(API_URL)
 .then((res) => res.json())
 .then((data) => {
-const found = data.find(
-(item) => item.slug === slug
-);
 
+  const found = data.find(
+    (item) => item.slug === slug
+  );
 
-    setArticle(found || null);
-    setLoading(false);
-  })
+  setArticle(found || null);
+
+  if (found) {
+    const related = data
+      .filter(
+        (item) =>
+          item.slug !== slug &&
+          (
+            language === "en"
+              ? item.category_en === found.category_en
+              : item.category_id === found.category_id
+          )
+      )
+      .slice(0, 3);
+
+    setRelatedArticles(related);
+  }
+
+  setLoading(false);
+})
   .catch((err) => {
     console.error(err);
     setLoading(false);
@@ -132,6 +150,61 @@ return (
 />
 
     </div>
+      {relatedArticles.length > 0 && (
+
+  <section className="mt-24 border-t border-border pt-16">
+
+    <h2 className="text-3xl font-bold mb-10">
+      {language === "en"
+        ? "Related Articles"
+        : "Artikel Terkait"}
+    </h2>
+
+    <div className="grid md:grid-cols-3 gap-8">
+
+      {relatedArticles.map((item) => (
+
+        <Link
+          key={item.slug}
+          to={`/insights/${item.slug}`}
+          className="group"
+        >
+
+          {item.image && (
+            <img
+              src={item.image}
+              alt={
+                language === "en"
+                  ? item.title_en
+                  : item.title_id
+              }
+              className="w-full h-48 object-cover rounded-xl mb-4"
+            />
+          )}
+
+          <div className="text-primary text-sm mb-2">
+            {language === "en"
+              ? item.category_en
+              : item.category_id}
+          </div>
+
+          <h3 className="font-bold text-xl group-hover:text-primary transition-colors">
+
+            {language === "en"
+              ? item.title_en
+              : item.title_id}
+
+          </h3>
+
+        </Link>
+
+      ))}
+
+    </div>
+
+  </section>
+
+)}
   </main>
 
   <Footer />
