@@ -160,14 +160,14 @@ return (
         : "Artikel Terkait"}
     </h2>
 
-    <div className="grid md:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
       {relatedArticles.map((item) => (
 
         <Link
           key={item.slug}
           to={`/insights/${item.slug}`}
-          className="group"
+          className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-300"
         >
 
           {item.image && (
@@ -178,23 +178,25 @@ return (
                   ? item.title_en
                   : item.title_id
               }
-              className="w-full h-48 object-cover rounded-xl mb-4"
+              className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
             />
           )}
 
-          <div className="text-primary text-sm mb-2">
-            {language === "en"
-              ? item.category_en
-              : item.category_id}
+          <div className="p-5">
+
+            <div className="text-primary text-xs uppercase mb-2">
+              {language === "en"
+                ? item.category_en
+                : item.category_id}
+            </div>
+
+            <h3 className="font-bold text-lg leading-snug group-hover:text-primary transition-colors">
+              {language === "en"
+                ? item.title_en
+                : item.title_id}
+            </h3>
+
           </div>
-
-          <h3 className="font-bold text-xl group-hover:text-primary transition-colors">
-
-            {language === "en"
-              ? item.title_en
-              : item.title_id}
-
-          </h3>
 
         </Link>
 
