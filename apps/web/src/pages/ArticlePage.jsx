@@ -24,7 +24,7 @@ const found = data.find(
 (item) => item.slug === slug
 );
 
-```
+
     setArticle(found || null);
     setLoading(false);
   })
@@ -32,7 +32,7 @@ const found = data.find(
     console.error(err);
     setLoading(false);
   });
-```
+
 
 }, [slug]);
 
@@ -73,7 +73,7 @@ return (
 ? article.meta_title_en
 : article.meta_title_id} </title>
 
-```
+
     <meta
       name="description"
       content={
