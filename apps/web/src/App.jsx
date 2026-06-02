@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage.jsx';
 import ServicesPage from './pages/ServicesPage.jsx';
 import HowWeWorkPage from './pages/HowWeWorkPage.jsx';
 import InsightsPage from './pages/InsightsPage.jsx';
+import ArticlePage from './pages/ArticlePage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/how-we-work" element={<HowWeWorkPage />} />
           <Route path="/insights" element={<InsightsPage />} />
+          <Route path="/insights/:slug" element={<ArticlePage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Toaster />
