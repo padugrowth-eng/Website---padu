@@ -1,11 +1,12 @@
 import { TrendingUp, Lightbulb, BarChart3, Target } from 'lucide-react';
 
 export const articles = [
-  {
+ {
   title: "5 Tanda Bisnis Siap Mencari Investor",
   category: "Investment",
   date: "2026-06-02",
   excerpt: "Sebelum mencari investor, pastikan bisnis Anda memenuhi indikator penting.",
+  icon: TrendingUp,
   content: `
   Banyak founder terlalu cepat mencari investor sebelum bisnisnya siap.
 
