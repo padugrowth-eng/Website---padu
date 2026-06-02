@@ -47,8 +47,14 @@ const ArticlePage = () => {
             {article.date}
           </div>
 
-          <div className="prose prose-invert max-w-none">
-            <p>{article.content}</p>
+          <div className="prose prose-invert max-w-none text-lg leading-8">
+            {article.content.split('\n').map((paragraph, index) => (
+              paragraph.trim() ? (
+                <p key={index} className="mb-6">
+                  {paragraph}
+                </p>
+            ) : null
+            ))}
           </div>
 
         </div>
