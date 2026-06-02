@@ -131,7 +131,71 @@
   .fade-in {
     animation: fadeIn 0.6s ease-in-out;
   }
+/* ARTICLE CONTENT */
 
+.article-content {
+  color: hsl(var(--foreground));
+  line-height: 1.9;
+}
+
+.article-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.article-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.article-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.article-content p {
+  margin-bottom: 1.25rem;
+  color: hsl(var(--foreground));
+}
+
+.article-content ul {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.article-content ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.article-content li {
+  margin-bottom: 0.75rem;
+  list-style: disc;
+}
+
+.article-content strong {
+  font-weight: 700;
+  color: white;
+}
+
+.article-content a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+.article-content blockquote {
+  border-left: 4px solid hsl(var(--primary));
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: hsl(var(--muted-foreground));
+}
+  
   @keyframes fadeIn {
     from {
       opacity: 0;
