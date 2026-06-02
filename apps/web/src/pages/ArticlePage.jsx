@@ -125,11 +125,11 @@ return (
       </div>
 
       <div
-        className="prose prose-invert max-w-none text-lg leading-8"
-        dangerouslySetInnerHTML={{
-          __html: content
-        }}
-      />
+  className="max-w-none text-lg leading-8 article-content"
+  dangerouslySetInnerHTML={{
+    __html: content
+  }}
+/>
 
     </div>
   </main>
