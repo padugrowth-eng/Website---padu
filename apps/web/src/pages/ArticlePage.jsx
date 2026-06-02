@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import { articles } from '@/data/articles.js';
+
 
 const ArticlePage = () => {
   const { slug } = useParams();
