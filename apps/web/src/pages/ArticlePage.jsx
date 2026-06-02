@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 import Header from "@/components/Header.jsx";
 import Footer from "@/components/Footer.jsx";
 import { useLanguage } from "@/contexts/LanguageContext.jsx";
@@ -22,7 +24,7 @@ const found = data.find(
 (item) => item.slug === slug
 );
 
-
+```
     setArticle(found || null);
     setLoading(false);
   })
@@ -30,7 +32,7 @@ const found = data.find(
     console.error(err);
     setLoading(false);
   });
-
+```
 
 }, [slug]);
 
@@ -66,8 +68,23 @@ language === "en"
 : article.content_id;
 
 return (
-<> <Header />
+<> <Helmet> <title>
+{language === "en"
+? article.meta_title_en
+: article.meta_title_id} </title>
 
+```
+    <meta
+      name="description"
+      content={
+        language === "en"
+          ? article.meta_description_en
+          : article.meta_description_id
+      }
+    />
+  </Helmet>
+
+  <Header />
 
   <main className="pt-32 pb-24">
     <div className="max-w-4xl mx-auto px-6">
@@ -76,21 +93,37 @@ return (
         {category}
       </div>
 
+      {article.image && (
+        <img
+          src={article.image}
+          alt={title}
+          className="w-full h-[400px] object-cover rounded-2xl mb-10"
+        />
+      )}
+
       <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
         {title}
       </h1>
 
       <div className="text-muted-foreground mb-10">
-        {article.date
-          ? new Date(article.date).toLocaleDateString(
-              language === "en" ? "en-US" : "id-ID",
-              {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-              }
-            )
-          : "-"}
+
+        <div>
+          {article.date
+            ? new Date(article.date).toLocaleDateString(
+                language === "en" ? "en-US" : "id-ID",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                }
+              )
+            : "-"}
+        </div>
+
+        <div className="mt-2">
+          By {article.author}
+        </div>
+
       </div>
 
       <div className="prose prose-invert max-w-none text-lg leading-8">
@@ -116,7 +149,6 @@ return (
 
   <Footer />
 </>
-
 
 );
 }
