@@ -7,13 +7,11 @@ import { useLanguage } from '@/contexts/LanguageContext.jsx';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import AnimatedCard from '@/components/AnimatedCard.jsx';
+import { articles } from '@/data/articles.js';
 
 const InsightsPage = () => {
   const { t } = useLanguage();
   
-  const insightIcons = [TrendingUp, Lightbulb, BarChart3, Target];
-  const dates = ['2026-05-15', '2026-05-10', '2026-05-05', '2026-04-28'];
-
   return (
     <>
       <Helmet>
@@ -42,8 +40,9 @@ const InsightsPage = () => {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[0, 1, 2, 3].map((index) => {
-                const Icon = insightIcons[index];
+              {articles.map((article, index) => {
+                const Icon = article.icon;
+
                 return (
                   <AnimatedCard key={index} delay={index * 0.1}>
                     <div className="flex flex-col h-full">
@@ -52,18 +51,18 @@ const InsightsPage = () => {
                           <Icon className="text-primary" size={24} />
                         </div>
                         <span className="text-sm font-medium text-primary tracking-wide uppercase">
-                          {t(`insights.items.${index}.category`)}
+                          {article.category}
                         </span>
                       </div>
                       <h2 className="text-2xl font-bold mb-3 text-balance">
-                        {t(`insights.items.${index}.title`)}
+                        {article.title}
                       </h2>
                       <p className="text-muted-foreground leading-relaxed mb-4 flex-1">
-                        {t(`insights.items.${index}.excerpt`)}
+                        {article.excerpt}
                       </p>
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
                         <span className="text-sm text-muted-foreground">
-                          {new Date(dates[index]).toLocaleDateString('en-US', {
+                          {new Date(article.date).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric',
