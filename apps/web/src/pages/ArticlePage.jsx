@@ -48,11 +48,7 @@ const ArticlePage = () => {
           </div>
 
           <div className="prose prose-invert max-w-none">
-            <p>{article.excerpt}</p>
-
-            <p>
-              Isi artikel lengkap dapat ditambahkan di sini.
-            </p>
+            <p>{article.content}</p>
           </div>
 
         </div>
