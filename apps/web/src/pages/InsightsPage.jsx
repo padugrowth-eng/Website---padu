@@ -17,7 +17,7 @@ const API_URL =
   "https://script.google.com/macros/s/AKfycbz7VNkFv8jp2szJ1-fYfrzJm-BayuPhPh2XAE0VOd0dldSbddLG96p6_lH4YzvSK-ui/exec";
 
 const InsightsPage = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -107,17 +107,23 @@ const InsightsPage = () => {
                           </div>
 
                           <span className="text-sm font-medium text-primary uppercase">
-                            {article.category}
+                            {language === 'en'
+                              ? article.category_en
+                              : article.category_id}
                           </span>
 
                         </div>
 
                         <h2 className="text-2xl font-bold mb-3">
-                          {article.title}
+                          {language === 'en'
+                            ? article.title_en
+                            : article.title_id}
                         </h2>
 
                         <p className="text-muted-foreground mb-4 flex-1">
-                          {article.excerpt}
+                          {language === 'en'
+                            ? article.excerpt_en
+                            : article.excerpt_id}
                         </p>
 
                         <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
