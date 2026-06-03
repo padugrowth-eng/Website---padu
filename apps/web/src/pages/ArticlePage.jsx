@@ -103,21 +103,62 @@ const articleUrl =
   `https://padu.id/insights/${article.slug}`;
   
 return (
-<> <Helmet> <title>
-{language === "en"
-? article.meta_title_en
-: article.meta_title_id} </title>
+<> <Helmet>
 
+  <title>
+    {language === "en"
+      ? article.meta_title_en
+      : article.meta_title_id}
+  </title>
 
-    <meta
-      name="description"
-      content={
-        language === "en"
-          ? article.meta_description_en
-          : article.meta_description_id
-      }
-    />
-  </Helmet>
+  <meta
+    name="description"
+    content={
+      language === "en"
+        ? article.meta_description_en
+        : article.meta_description_id
+    }
+  />
+
+  <meta
+    property="og:title"
+    content={
+      language === "en"
+        ? article.meta_title_en
+        : article.meta_title_id
+    }
+  />
+
+  <meta
+    property="og:description"
+    content={
+      language === "en"
+        ? article.meta_description_en
+        : article.meta_description_id
+    }
+  />
+
+  <meta
+    property="og:image"
+    content={article.image}
+  />
+
+  <meta
+    property="og:type"
+    content="article"
+  />
+
+  <meta
+    property="og:url"
+    content={articleUrl}
+  />
+
+  <meta
+    property="og:site_name"
+    content="PADU Growth"
+  />
+
+</Helmet>
 
   <Header />
 
