@@ -167,64 +167,84 @@
     text-wrap: balance;
   }
 
-  /* ARTICLE CONTENT */
+/* ========================================
+   ARTICLE CONTENT
+======================================== */
 
-  .article-content {
-    color: hsl(var(--foreground));
-    line-height: 1.9;
-  }
+.article-content {
+  color: hsl(var(--foreground));
+  line-height: 1.9;
+  font-size: 1.125rem;
+}
 
-  .article-content h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
+.article-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
 
-  .article-content h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-  }
+.article-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
 
-  .article-content h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
+.article-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
 
-  .article-content p {
-    margin-bottom: 1.5rem;
-  }
+.article-content p {
+  margin-bottom: 1.5rem;
+}
 
-  .article-content ul,
-  .article-content ol {
-    margin: 1.5rem 0;
-    padding-left: 1.75rem;
-  }
+.article-content ul {
+  list-style-type: disc !important;
+  padding-left: 2rem !important;
+  margin: 1.5rem 0;
+}
 
-  .article-content li {
-    margin-bottom: 0.75rem;
-  }
+.article-content ol {
+  list-style-type: decimal !important;
+  padding-left: 2rem !important;
+  margin: 1.5rem 0;
+}
 
-  .article-content strong {
-    font-weight: 700;
-    color: white;
-  }
+.article-content li {
+  display: list-item !important;
+  margin-bottom: 0.75rem;
+}
 
-  .article-content a {
-    color: hsl(var(--primary));
-    text-decoration: underline;
-  }
+.article-content ul li::marker {
+  color: #a8c638;
+}
 
-  .article-content blockquote {
-    border-left: 4px solid hsl(var(--primary));
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    color: hsl(var(--muted-foreground));
-  }
+.article-content ol li::marker {
+  color: #a8c638;
+}
+
+.article-content strong {
+  color: white;
+  font-weight: 700;
+}
+
+.article-content a {
+  color: #a8c638;
+  text-decoration: underline;
+}
+
+.article-content blockquote {
+  border-left: 4px solid #a8c638;
+  padding-left: 1rem;
+  margin: 2rem 0;
+}
 
   .article-content img {
     width: 100%;
