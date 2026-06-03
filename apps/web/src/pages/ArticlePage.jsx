@@ -91,6 +91,13 @@ const content =
 language === "en"
 ? article.content_en
 : article.content_id;
+
+const readingTime = Math.ceil(
+  content
+    .replace(/<[^>]*>/g, "")
+    .split(/\s+/)
+    .length / 200
+);
   
 const articleUrl =
   `https://padu.id/insights/${article.slug}`;
@@ -134,22 +141,35 @@ return (
       </h1>
 
       <div className="text-muted-foreground mb-10">
-        <div>
-          {article.date
-            ? new Date(article.date).toLocaleDateString(
-                language === "en" ? "en-US" : "id-ID",
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric"
-                }
-              )
-            : "-"}
-        </div>
 
-        <div className="mt-2">
-          By {article.author}
-        </div>
+  <div className="flex flex-wrap items-center gap-2">
+
+    <span>
+      {article.date
+        ? new Date(article.date).toLocaleDateString(
+            language === "en" ? "en-US" : "id-ID",
+            {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            }
+          )
+        : "-"}
+    </span>
+
+    <span>•</span>
+
+    <span>
+      {readingTime} min read
+    </span>
+
+  </div>
+
+  <div className="mt-2">
+    By {article.author}
+  </div>
+
+</div>
 
         <div className="flex items-center gap-3 mt-6">
 
