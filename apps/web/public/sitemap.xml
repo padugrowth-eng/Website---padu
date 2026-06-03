@@ -1,28 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-  <loc>https://www.padu.id/</loc>
+<loc>https://www.padu.id/</loc>
 </url>
 
 <url>
-  <loc>https://www.padu.id/about</loc>
+<loc>https://www.padu.id/about</loc>
 </url>
 
 <url>
-  <loc>https://www.padu.id/services</loc>
+<loc>https://www.padu.id/services</loc>
 </url>
 
 <url>
-  <loc>https://www.padu.id/how-we-work</loc>
+<loc>https://www.padu.id/how-we-work</loc>
 </url>
 
 <url>
-  <loc>https://www.padu.id/insights</loc>
+<loc>https://www.padu.id/insights</loc>
 </url>
 
 <url>
-  <loc>https://www.padu.id/contact</loc>
+<loc>https://www.padu.id/contact</loc>
+</url>
+
+<!-- ARTICLES -->
+
+<url>
+<loc>https://www.padu.id/insights/5-tanda-bisnis-siap-mencari-investor</loc>
+</url>
+
+<url>
+<loc>https://www.padu.id/insights/cara-menentukan-valuasi-bisnis-sebelum-mencari-investor</loc>
+</url>
+
+<url>
+<loc>https://www.padu.id/insights/why-many-businesses-fail-to-secure-investment</loc>
+</url>
+
+<url>
+<loc>https://www.padu.id/insights/strategic-partner-vs-investor</loc>
 </url>
 
 </urlset>
