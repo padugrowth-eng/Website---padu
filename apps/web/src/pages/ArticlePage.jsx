@@ -22,8 +22,7 @@ const { language } = useLanguage();
 const [article, setArticle] = useState(null);
 const [loading, setLoading] = useState(true);
 const [relatedArticles, setRelatedArticles] = useState([]);
-const articleUrl =
-  `https://padu.id/insights/${article.slug}`;
+
 
 useEffect(() => {
 fetch(API_URL)
@@ -92,7 +91,10 @@ const content =
 language === "en"
 ? article.content_en
 : article.content_id;
-
+  
+const articleUrl =
+  `https://padu.id/insights/${article.slug}`;
+  
 return (
 <> <Helmet> <title>
 {language === "en"
@@ -148,6 +150,39 @@ return (
         <div className="mt-2">
           By {article.author}
         </div>
+
+        <div className="flex items-center gap-3 mt-6">
+
+  <a
+    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-3 rounded-xl bg-card border border-border hover:border-primary transition"
+  >
+    <Linkedin size={18} />
+  </a>
+
+  <a
+    href={`https://wa.me/?text=${encodeURIComponent(title + " " + articleUrl)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-3 rounded-xl bg-card border border-border hover:border-primary transition"
+  >
+    <MessageCircle size={18} />
+  </a>
+
+  <button
+    onClick={() => {
+      navigator.clipboard.writeText(articleUrl);
+      alert("Link copied!");
+    }}
+    className="p-3 rounded-xl bg-card border border-border hover:border-primary transition"
+  >
+    <LinkIcon size={18} />
+  </button>
+
+</div>
+        
       </div>
 
       <div
