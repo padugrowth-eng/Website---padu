@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
+import {
+  Linkedin,
+  MessageCircle,
+  Link as LinkIcon
+} from "lucide-react";
+
 import Header from "@/components/Header.jsx";
 import Footer from "@/components/Footer.jsx";
 import { useLanguage } from "@/contexts/LanguageContext.jsx";
@@ -16,6 +22,8 @@ const { language } = useLanguage();
 const [article, setArticle] = useState(null);
 const [loading, setLoading] = useState(true);
 const [relatedArticles, setRelatedArticles] = useState([]);
+const articleUrl =
+  `https://padu.id/insights/${article.slug}`;
 
 useEffect(() => {
 fetch(API_URL)
