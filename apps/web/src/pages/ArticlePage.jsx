@@ -356,3 +356,4 @@ return (
 
 );
 }
+export default ArticlePage;
