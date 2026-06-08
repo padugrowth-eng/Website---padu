@@ -271,7 +271,7 @@ return (
     </a>
 
     <a
-      href="https://wa.me/628XXXXXXXXXX"
+      href="https://wa.me/6282146860867"
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex items-center px-6 py-3 rounded-xl border border-primary text-primary font-medium hover:bg-primary hover:text-white transition"
