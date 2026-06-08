@@ -283,7 +283,8 @@ return (
 
 </div>
 
-{relatedArticles.length > 0 && (
+      {relatedArticles.length > 0 && (
+
         <section className="mt-20 pt-12 border-t border-border">
 
           <h2 className="text-2xl md:text-3xl font-bold mb-8">
@@ -345,6 +346,9 @@ return (
         </section>
 
       )}
+
+    </div> {/* PENUTUP max-w-4xl mx-auto px-6 */}
+
   </main>
 
   <Footer />
@@ -352,5 +356,3 @@ return (
 
 );
 }
-
-export default ArticlePage;
