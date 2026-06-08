@@ -249,10 +249,41 @@ return (
   }}
 />
 
+{/* CTA PADU */}
+<div className="mt-12 p-8 rounded-2xl border border-border bg-card">
 
-    </div>
-     {relatedArticles.length > 0 && (
+  <h3 className="text-2xl font-bold mb-3">
+    Apakah Bisnis Anda Siap Bertumbuh?
+  </h3>
 
+  <p className="text-muted-foreground mb-6">
+    Diskusikan kebutuhan pendanaan, strategic partnership,
+    valuasi bisnis, atau ekspansi perusahaan bersama tim PADU Growth.
+  </p>
+
+  <div className="flex flex-wrap gap-4">
+
+    <a
+      href="/contact"
+      className="inline-flex items-center px-6 py-3 rounded-xl bg-primary text-white font-medium hover:opacity-90 transition"
+    >
+      Jadwalkan Konsultasi
+    </a>
+
+    <a
+      href="https://wa.me/628XXXXXXXXXX"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center px-6 py-3 rounded-xl border border-primary text-primary font-medium hover:bg-primary hover:text-white transition"
+    >
+      Hubungi via WhatsApp
+    </a>
+
+  </div>
+
+</div>
+
+{relatedArticles.length > 0 && (
         <section className="mt-20 pt-12 border-t border-border">
 
           <h2 className="text-2xl md:text-3xl font-bold mb-8">
