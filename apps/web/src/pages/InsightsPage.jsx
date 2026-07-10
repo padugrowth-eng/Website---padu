@@ -149,6 +149,33 @@ const filteredArticles = useMemo(() => {
           />
 
             </div>
+
+              <div className="flex flex-wrap justify-center gap-3 mt-8">
+
+  {categories.map((item) => (
+
+    <button
+      key={item}
+      onClick={() => setCategory(item)}
+      className={`px-4 py-2 rounded-full transition
+
+      ${
+        category === item
+          ? "bg-primary text-white"
+          : "bg-card border border-border hover:border-primary"
+      }
+
+      `}
+    >
+
+      {item}
+
+    </button>
+
+  ))}
+
+</div>
+              
             </motion.div>
 
             {loading ? (
@@ -161,7 +188,7 @@ const filteredArticles = useMemo(() => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                {articles.map((article, index) => {
+                filteredArticles.map((article, index) => {
 
                   const Icon = icons[index % icons.length];
 
