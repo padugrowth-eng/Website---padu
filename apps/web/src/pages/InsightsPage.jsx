@@ -52,6 +52,57 @@ const InsightsPage = () => {
       });
   }, []);
 
+  const categories = useMemo(() => {
+
+  return [
+
+    "All",
+
+    ...new Set(
+
+      articles.map(article =>
+
+        language === "en"
+
+          ? article.category_en
+
+          : article.category_id
+
+      )
+
+    )
+
+  ];
+
+}, [articles, language]);
+
+const filteredArticles = useMemo(() => {
+
+  return articles.filter(article => {
+
+    const title =
+      language === "en"
+        ? article.title_en
+        : article.title_id;
+
+    const articleCategory =
+      language === "en"
+        ? article.category_en
+        : article.category_id;
+
+    const matchSearch =
+      title.toLowerCase().includes(search.toLowerCase());
+
+    const matchCategory =
+      category === "All" ||
+      articleCategory === category;
+
+    return matchSearch && matchCategory;
+
+  });
+
+}, [articles, search, category, language]);
+  
   return (
     <>
       <Helmet>
