@@ -188,7 +188,7 @@ const filteredArticles = useMemo(() => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                filteredArticles.map((article, index) => {
+                {filteredArticles.map((article, index) => {
 
                   const Icon = icons[index % icons.length];
 
@@ -219,7 +219,7 @@ const filteredArticles = useMemo(() => {
         size={48}
       />
     </div>
-  )}
+ )}
 
 </div>
 
@@ -245,7 +245,12 @@ const filteredArticles = useMemo(() => {
 
                           <span className="text-sm text-muted-foreground">
                             {article.date
-                              ? new Date(article.date).toLocaleDateString('id-ID', {
+                              ? new Date(article.date).toLocaleDateString(
+                                language === "en"
+                                    ? "en-US"
+                                    : "id-ID", 
+                                                                          
+                              {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric'
