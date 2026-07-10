@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import {
@@ -21,6 +21,9 @@ const InsightsPage = () => {
 
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
 
   const icons = [
     TrendingUp,
@@ -33,9 +36,16 @@ const InsightsPage = () => {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
-        setArticles(data);
-        setLoading(false);
-      })
+
+    const sorted = [...data].sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+    );
+
+    setArticles(sorted);
+
+    setLoading(false);
+
+    })
       .catch((err) => {
         console.error(err);
         setLoading(false);
@@ -73,6 +83,21 @@ const InsightsPage = () => {
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 {t('insights.subtitle')}
               </p>
+              <div className="max-w-2xl mx-auto mt-10">
+
+                <input
+                    type="text"
+                    placeholder={
+                      language === "en"
+                        ? "Search articles..."
+                        : "Cari artikel..."
+                }
+              value={search}
+              onChange={(e)=>setSearch(e.target.value)}
+              className="w-full rounded-xl border border-border bg-card px-5 py-4"
+          />
+
+            </div>
             </motion.div>
 
             {loading ? (
